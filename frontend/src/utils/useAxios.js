@@ -7,7 +7,7 @@ import AuthContext from "../context/AuthContext";
 const baseURL = "http://127.0.0.1:8000/api";
 
 const useAxios = () => {
-  const { authTokens, setUser, setAuthTokens } = useContext(AuthContext);
+  const { authTokens, setUser, setAuthTokens, logoutUser } = useContext(AuthContext);
 
   const axiosInstance = axios.create({
     baseURL,
@@ -16,10 +16,10 @@ const useAxios = () => {
 
   axiosInstance.interceptors.request.use(async req => {
     const user = jwt_decode(authTokens.access);
-    const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
+    const isExpired = dayjs.unix(user.exp).diff(dayjs()) > 1;
 
-    if (!isExpired) return req;
-
+    if (!isExpired) return logoutUser();
+    
     const response = await axios.post(`${baseURL}/token/refresh/`, {
       refresh: authTokens.refresh
     });
@@ -31,6 +31,7 @@ const useAxios = () => {
 
     req.headers.Authorization = `Bearer ${response.data.access}`;
     return req;
+
   });
 
   return axiosInstance;
