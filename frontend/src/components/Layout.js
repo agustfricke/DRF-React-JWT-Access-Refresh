@@ -3,7 +3,9 @@ import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 
 const Layout = () => {
-    let { logoutUser} = useContext(AuthContext)
+
+    let { logoutUser } = useContext(AuthContext)
+
   return (
     <>
       <nav>
