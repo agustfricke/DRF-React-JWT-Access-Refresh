@@ -49,7 +49,7 @@ const RegisterPage = () => {
   if(registerMutation.isLoading) return <Loader/>
 
   return (
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[800px]  lg:py-0">
         <Link to="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
           <img className="w-8 h-8 mr-2" src={Logo} alt="logo"/>
           <span>Your site</span>
@@ -91,7 +91,7 @@ const RegisterPage = () => {
             {match() ? null : <p className="text-sm font-medium text-red-500">Passwords must match</p>}
               <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign up</button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Have an account? <Link to={'/register'} className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign in</Link>
+                Have an account? <Link to={'/login'} className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign in</Link>
               </p>
             </form>
           </div>
